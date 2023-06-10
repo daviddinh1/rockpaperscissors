@@ -5,8 +5,12 @@ function getComputerChoice() {
 }
 
 let userScore = 0;
-let computerScore =0;
+let computerScore = 0;
 let computerSelection = getComputerChoice();
+
+function display(score1, score2){
+  return `SCORES: User: ${score1} Bot: ${score2}`;
+}
 
 function playRound(playerSelection, computerSelection){ //changed second parameter
  let userInput = playerSelection.toLowerCase();
@@ -14,10 +18,10 @@ function playRound(playerSelection, computerSelection){ //changed second paramet
  if(userInput === computerSelection){
   userScore++;
   computerScore++;
-  console.log("Tie!! BOZO");
+  return("Tie!! BOZO");
  } else if(userInput === 'rock' && computerSelection ==='scissors'){
   userScore++;
-  console.log( "You picked rock! Rock beats scissors you WON!"); 
+  return( "You picked rock! Rock beats scissors you WON!"); 
  } else if(userInput === 'paper' && computerSelection ==='rock'){
    userScore++;
   return "You picked paper! paper beats rock you WON!";
@@ -37,21 +41,31 @@ function playRound(playerSelection, computerSelection){ //changed second paramet
 
 }
 
+const scores = document.querySelector(".scores");
+const div = document.createElement('div');
+scores.classList.add('div');
+
 //function reference calls function immediately
 const rockSelector = document.querySelector('.rock'); 
 rockSelector.addEventListener('click', function (){
   playRound("rock",computerSelection)
+  div.textContent = display(userScore,computerScore)
+  scores.appendChild(div)
 });
 
 
 const paperSelector = document.querySelector('.paper'); 
-rockSelector.addEventListener('click', function (){
+paperSelector.addEventListener('click', function (){
   playRound("paper",computerSelection)
+  div.textContent = display(userScore,computerScore);
+  scores.appendChild(div);
 });
 
 const scissorsSelector = document.querySelector('.scissors'); 
-rockSelector.addEventListener('click', function (){
+scissorsSelector.addEventListener('click', function (){
   playRound("scissors",computerSelection)
+  div.textContent = display(userScore,computerScore);
+  scores.appendChild(div);
 });
 
 /*

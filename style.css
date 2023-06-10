@@ -1,0 +1,33 @@
+@font-face{
+ font-family: myFirstFont;
+ src: url(VCR_OSD_MONO_1.001.ttf);
+}
+
+*{
+ font-family: myFirstFont;
+}
+
+.header{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ padding: 32px;
+ gap:32px;
+ font-size: 24px;
+}
+
+.scores{
+ display:flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+ gap: 8px;
+}
+
+.buttons{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+
