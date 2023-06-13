@@ -3,31 +3,71 @@
  src: url(VCR_OSD_MONO_1.001.ttf);
 }
 
-*{
- font-family: myFirstFont;
+body {
+ display: flex;
+ flex-direction: column;
 }
 
-.header{
+*{
+ font-family: myFirstFont;
+ color: #FBEAEB;
+ background-color: #314088;
+ margin : 0;
+}
+
+#header{
  display: flex;
  align-items: center;
  justify-content: center;
- padding: 32px;
- gap:32px;
- font-size: 24px;
+ font-size: 50px;
+ padding: 40px;
+ background-color: #26326C;
 }
 
-.scores{
- display:flex;
- align-items: center;
- justify-content: center;
- flex-direction: column;
- gap: 8px;
+.display{
+ text-align: center;
+ padding: 40px;
+ font-size: 30px;
+}
+
+#result{
+ font-size: 35px;
+ padding-bottom: 16px;
 }
 
 .buttons{
- display: flex;
+ display:flex;
  align-items: center;
  justify-content: center;
+ padding: 25px;
+ gap: 50px;
+}
+
+.rock, .paper, .scissors{
+ font-size: 100px;
+ width: 150px;
+ height: 150px;
+ border-radius: 8px;
+}
+
+button:hover{
+ background-color: #3748A2;
+}
+
+.container{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ gap: 84px;
+ font-size: 134px;
+}
+
+.footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto; 
+  padding-top: 130px;
 }
 
 

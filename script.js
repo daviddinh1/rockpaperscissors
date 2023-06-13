@@ -1,90 +1,109 @@
-function getComputerChoice() {
- let choices = ['rock','paper','scissors'];
- let choice = choices[Math.floor(Math.random() * choices.length)];
- return choice;
+function getComputerChoice(){
+  const selection = ['rock','paper','scissors'];
+  let randomIndex = Math.floor(Math.random() * selection.length);
+  let computerChoice = selection[randomIndex];
+  return computerChoice;
 }
 
 let userScore = 0;
 let computerScore = 0;
-let computerSelection = getComputerChoice();
+let compChoice = getComputerChoice();
 
-function display(score1, score2){
-  return `SCORES: User: ${score1} Bot: ${score2}`;
+function playRound(playerSelection, compChoice){
+  while(userScore < 5 || computerScore < 5){
+    if (userScore === 5){
+      return "You won!";
+      break;
+    } else if (computerScore === 5){
+      return "You lost";
+      break;
+    } else if(playerSelection === compChoice){
+      userScore++;
+      computerScore++;
+      return "Tie!";
+    } else if(playerSelection === 'rock' && compChoice === 'scissors'){
+      userScore++;
+      return "You win, Rock beats scissors";
+    } else if(playerSelection === 'paper' && compChoice === 'rock'){
+      userScore++;
+      return "You win, paper beats rock";
+    } else if(playerSelection === 'scissors' && compChoice === 'paper'){
+      userScore++;
+      return "You win, scissors beats paper";
+    } else if(compChoice === 'rock' && playerSelection === 'scissors'){
+      computerScore++;
+      return "You lost, Rock beats scissors";
+    } else if(compChoice === 'paper' && playerSelection === 'rock'){
+      computerScore++;
+      return "You lost, paper beats rock";
+    } else if(compChoice === 'scissors' && playerSelection === 'paper'){
+      computerScore++;
+      return "You lost, scissors beats paper";
+    } 
+  }
+  
+  
 }
 
-function playRound(playerSelection, computerSelection){ //changed second parameter
- let userInput = playerSelection.toLowerCase();
-
- if(userInput === computerSelection){
-  userScore++;
-  computerScore++;
-  return("Tie!! BOZO");
- } else if(userInput === 'rock' && computerSelection ==='scissors'){
-  userScore++;
-  return( "You picked rock! Rock beats scissors you WON!"); 
- } else if(userInput === 'paper' && computerSelection ==='rock'){
-   userScore++;
-  return "You picked paper! paper beats rock you WON!";
- } else if(userInput === 'scissors' && computerSelection ==='paper'){
-   userScore++;
-  return("You picked scissors! scissors beats paper you WON!");
- }else if(computerSelection === 'rock' && userInput ==='scissors'){
-  computerScore++;
-  return( "Bot picked rock! Rock beats scissors you LOST!");
- } else if(computerSelection === 'paper' && userInput ==='rock'){
-  computerScore++;
-  return( "Bot picked paper! paper beats rock you LOST!"); 
- } else if(computerSelection === 'scissors' && userInput ==='paper'){
-  computerScore++;
-  return "BOT picked scissors! scissors beats paper you LOST!";
- }
-
+function scoreDisplay(userScore,computerScore){
+  return `SCORES: User: ${userScore} Bot: ${computerScore}`;
 }
 
-const scores = document.querySelector(".scores");
-const div = document.createElement('div');
-scores.classList.add('div');
+function showMovesUser(userChoice){
+  if(userChoice === 'rock'){
+    return "✊";
+  }
+  else if(userChoice === 'paper'){
+    return "🖐️";
+  }
+  else if(userChoice === 'scissors'){
+    return "✌️";
+  }
+}
 
-//function reference calls function immediately
-const rockSelector = document.querySelector('.rock'); 
-rockSelector.addEventListener('click', function (){
-  playRound("rock",computerSelection)
-  div.textContent = display(userScore,computerScore)
-  scores.appendChild(div)
+function showMovesComputer(compChoice){
+  if(compChoice === 'rock'){
+    return "✊";
+  }
+  else if(compChoice === 'paper'){
+    return "🖐️";
+  }
+  else if(compChoice === 'scissors'){
+    return "✌️";
+  }
+}
+
+
+const rockSelector = document.querySelector(".rock");
+rockSelector.addEventListener('click', function(){
+    document.getElementById("result").innerHTML = playRound('rock',compChoice)
+    document.getElementById("scores").innerHTML = scoreDisplay(userScore,computerScore)
+    if(userScore && computerScore < 5){
+      document.getElementById("userSelection").innerHTML = showMovesUser('rock')
+      document.getElementById("computerSelection").innerHTML = showMovesComputer(compChoice)
+    }
+});
+
+const paperSelector = document.querySelector(".paper");
+paperSelector.addEventListener('click', function(){
+    document.getElementById("result").innerHTML = playRound('paper',compChoice)
+    document.getElementById("scores").innerHTML = scoreDisplay(userScore,computerScore)
+    if(userScore && computerScore < 5){
+      document.getElementById("userSelection").innerHTML = showMovesUser('paper')
+      document.getElementById("computerSelection").innerHTML = showMovesComputer(compChoice)
+    }
+});
+
+const scissorsSelector = document.querySelector(".scissors");
+scissorsSelector.addEventListener('click', function(){
+    document.getElementById("result").innerHTML = playRound('scissors',compChoice)
+    document.getElementById("scores").innerHTML = scoreDisplay(userScore,computerScore)
+    if(userScore && computerScore <5){
+      document.getElementById("userSelection").innerHTML = showMovesUser('scissors')
+      document.getElementById("computerSelection").innerHTML = showMovesComputer(compChoice)
+    } 
 });
 
 
-const paperSelector = document.querySelector('.paper'); 
-paperSelector.addEventListener('click', function (){
-  playRound("paper",computerSelection)
-  div.textContent = display(userScore,computerScore);
-  scores.appendChild(div);
-});
 
-const scissorsSelector = document.querySelector('.scissors'); 
-scissorsSelector.addEventListener('click', function (){
-  playRound("scissors",computerSelection)
-  div.textContent = display(userScore,computerScore);
-  scores.appendChild(div);
-});
-
-/*
-function game(){
- for(let i = 0 ; i<5 ;i++){
-  let playerSelection = prompt("Please enter rock, paper, or scissors");
-  let computerSelection = getComputerChoice();
-  console.log(playRound(playerSelection,computerSelection));
-  let display = `SCORES: User: ${userScore} Bot: ${computerScore}`;
-  console.log(display);
- }
- if(userScore > computerScore){
-  console.log("you won"); 
- }
- else{
-  console.log("you lost");
- }
-}
-
-game();
-*/
 

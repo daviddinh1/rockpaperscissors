@@ -2,30 +2,36 @@
 <html lang="en">
 <head>
  <meta charset="UTF-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link rel="stylesheet" href="style.css">
  <title>Rock Paper Scissors</title>
 </head>
 <body>
- <div class ="header">
-  <h2>Coffee</h2>
-  <h2>Cream</h2>
-  <h2>Cocoa</h2>
+ <h1 id="header">Rock Paper Scissors</h1>
+
+ <div class="display">
+  <div id="result">Choose your weapon</div>
+  <div id="scores">First to 5 wins!</div>
  </div>
 
-
- <div class="scores">
-  <div>Select Your Ingredient</div>
-  <div>First to 5 points wins!</div>
+ <!--Work in progress-->
+ <div class="container">
+  <div class ="option1">
+    <div id="userSelection">&#10067;</div>
+   </div>
+  <div class="option2">
+   <div id="computerSelection">&#10067;</div>
+  </div>
  </div>
+
 
  <div class="buttons">
-  <button class="rock">Rock</button>
-  <button class="paper">Paper</button>
-  <button class="scissors">Scissors</button>
+  <button class="rock">✊</button> 
+  <button class="paper">🖐️</button> 
+  <button class="scissors">✌️</button>
  </div>
  
+ <div class="footer">Copyright © 2023 daviddinh1</div>
  <script src="script.js"></script>
 </body>
 </html>
